@@ -1,0 +1,23 @@
+{
+  "name": "anvorgueso-redes",
+  "version": "0.1.0",
+  "description": "CLI y flujo de trabajo para producir el contenido de @anvorgueso.cat (gato influencer virtual).",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "anv": "bin/anv.js"
+  },
+  "scripts": {
+    "anv": "node bin/anv.js",
+    "test": "node --test",
+    "prueba:reel": "node bin/anv.js voice 2026-10-27-presentacion && node bin/anv.js render 2026-10-27-presentacion && node bin/anv.js edit 2026-10-27-presentacion"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "license": "UNLICENSED",
+  "author": "Nicolas (Joakoniko)",
+  "dependencies": {
+    "sharp": "^0.35.5"
+  }
+}

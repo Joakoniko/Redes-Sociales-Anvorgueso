@@ -1,0 +1,12 @@
+{
+  "nombre": "Fernet",
+  "rol": "el comentarista de fondo",
+  "estado": "boceto",
+  "descripcion": "Paloma de plaza porteña, gris tornasolada, con cadenita de oro y cara de que ya lo vio todo. Chusma y narrador.",
+  "carpeta": "assets/personajes/fernet",
+  "modeloPrincipal": "fernet",
+  "fondoPorDefecto": "celeste",
+  "paleta": { "gris": "#C9CFD6", "grisClaro": "#E9EEF2", "tornasol": "#8C5BA8", "cadenita": "#FFD23C", "patas": "#F28C28", "contorno": "#1A1A1E" },
+  "voz": { "edge": "es-AR-TomasNeural", "edgeRate": "-4%", "edgePitch": "-6Hz", "piper": "auto", "piperLengthScale": 1.04 },
+  "tono": ["Tira la frase final con tono de barrio, como quien ya vio esa película.", "Voz provisoria: confirmar con Nicolas."]
+}

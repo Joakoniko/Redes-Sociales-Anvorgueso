@@ -1,0 +1,12 @@
+{
+  "nombre": "Choripán",
+  "rol": "el compañero que cae en las bromas",
+  "estado": "boceto",
+  "descripcion": "Perro salchicha disfrazado de pancho, con el pan como parte del cuerpo. Bueno, lento y se cree todo.",
+  "carpeta": "assets/personajes/choripan",
+  "modeloPrincipal": "choripan",
+  "fondoPorDefecto": "crema",
+  "paleta": { "pan": "#F2C27B", "salchicha": "#B5532F", "mostaza": "#FFD23C", "contorno": "#1A1A1E" },
+  "voz": { "edge": "es-AR-TomasNeural", "edgeRate": "-6%", "edgePitch": "-18Hz", "piper": "auto", "piperLengthScale": 1.08 },
+  "tono": ["Habla despacio, pregunta cosas obvias, nunca se enoja.", "Voz provisoria: confirmar con Nicolas."]
+}

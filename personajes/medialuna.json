@@ -1,0 +1,12 @@
+{
+  "nombre": "Medialuna",
+  "rol": "la energía caótica",
+  "estado": "boceto",
+  "descripcion": "Hámster dorado, redondo, con rayitas curvas y los cachetes siempre llenos. Caótico, tierno y acumulador.",
+  "carpeta": "assets/personajes/medialuna",
+  "modeloPrincipal": "medialuna",
+  "fondoPorDefecto": "crema",
+  "paleta": { "dorado": "#F7B759", "tostado": "#E58A2B", "panza": "#FFC9A0", "contorno": "#1A1A1E" },
+  "voz": { "edge": "es-AR-ElenaNeural", "edgeRate": "+15%", "edgePitch": "+25Hz", "piper": "auto", "piperLengthScale": 0.85 },
+  "tono": ["Habla rápido, se entusiasma, esconde comida en cualquier lado.", "Voz provisoria: confirmar con Nicolas."]
+}

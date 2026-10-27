@@ -1,0 +1,49 @@
+{
+  "slug": "2026-10-27-presentacion",
+  "titulo": "Anvorgueso se presenta",
+  "idea": "content/idea/2026-10-27-presentacion.md",
+  "plataformas": ["tiktok", "instagram", "shorts", "facebook"],
+  "personajes": ["anvorgueso"],
+  "escenas": [
+    {
+      "personaje": "anvorgueso",
+      "modelo": "09-mascota-parada",
+      "animacion": "entrada",
+      "fondo": "rosa",
+      "texto": "¿Y este gato?",
+      "voz": "Miau, che. Soy Anvorgueso.",
+      "dur": 3
+    },
+    {
+      "personaje": "anvorgueso",
+      "modelo": "09-mascota-parada",
+      "animacion": "habla",
+      "fondo": "verde",
+      "texto": "No es un filtro",
+      "voz": "Mitad verde, mitad rosa. Nací así.",
+      "dur": 4
+    },
+    {
+      "personaje": "anvorgueso",
+      "modelo": "01-mochi",
+      "animacion": "habla",
+      "fondo": "noche",
+      "texto": "No es un error, es diseño",
+      "voz": "El ojo rojo no es error. Es diseño.",
+      "dur": 4
+    },
+    {
+      "personaje": "anvorgueso",
+      "modelo": "09-mascota-parada",
+      "animacion": "baile",
+      "fondo": "rosa",
+      "texto": "Seguime (o no)",
+      "voz": "Seguime. O no. Me voy a dormir.",
+      "dur": 4
+    }
+  ],
+  "caption": "Hola, soy Anvorgueso: mitad verde, mitad rosa y cero ganas de laburar. ¿Vos de qué lado estás?",
+  "hashtags": ["#anvorgueso", "#gato", "#humor", "#argentina", "#animacion"],
+  "musica": null,
+  "notas": "Primer video de prueba del flujo completo. Sin música. El ojo rojo tiene que quedar del lado verde (izquierda) en todas las escenas."
+}
