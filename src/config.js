@@ -1,4 +1,5 @@
 // Configuración central del proyecto. Todo lo que un rol pueda querer ajustar vive acá.
+import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -83,7 +84,12 @@ export const FUENTE = {
   familia: 'DejaVu Sans',
 };
 
-export const PYTHON = process.env.ANV_PYTHON || (process.platform === 'win32' ? 'python' : 'python3');
+// Python para los TTS: ANV_PYTHON, o el entorno virtual .venv del repo si existe, o el del sistema.
+const PYTHON_VENV = process.platform === 'win32'
+  ? path.join(ROOT, '.venv', 'Scripts', 'python.exe')
+  : path.join(ROOT, '.venv', 'bin', 'python');
+export const PYTHON_ES_VENV = !process.env.ANV_PYTHON && fs.existsSync(PYTHON_VENV);
+export const PYTHON = process.env.ANV_PYTHON || (fs.existsSync(PYTHON_VENV) ? PYTHON_VENV : (process.platform === 'win32' ? 'python' : 'python3'));
 
 // Voz Piper de respaldo (español, liviana, publicada en GitHub por el proyecto Piper).
 export const PIPER_RESPALDO = {

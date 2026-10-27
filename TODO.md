@@ -6,7 +6,7 @@ Prioridades del proyecto. Se actualiza en cada sesión: lo hecho se mueve a "Hec
 
 - [ ] **[Nicolas]** Mirar el reel de prueba `content/listo/2026-10-27-presentacion/2026-10-27-presentacion.mp4` y decir qué cambiar (ritmo, voz, texto, tamaño del personaje).
 - [ ] **[Nicolas]** Elegir el modelo definitivo del personaje (hoy provisorio: `09-mascota-parada` + `01-mochi` para primeros planos) y, si quiere, un modo (anime, juguete 3D, peluche, etc.). Anotar en `docs/DECISIONES.md`.
-- [ ] **[Nicolas]** Instalar en su máquina: Node ≥ 18, ffmpeg, Python 3, `pip install edge-tts piper-tts`, `npm install`. Correr `npm run prueba:reel` para regenerar el reel con la voz argentina (`es-AR-TomasNeural`).
+- [ ] **[Nicolas]** Instalar en su máquina: Node ≥ 18, ffmpeg, Python 3.12, el entorno `.venv` con edge-tts y piper-tts (README, sección "Voz"), `npm install`. Correr `npm run prueba:reel` para regenerar el reel con la voz argentina (`es-AR-TomasNeural`).
 - [ ] **[Nicolas]** Crear o verificar las cuentas @anvorgueso.cat en TikTok, Instagram (profesional), Facebook (página) y YouTube. Si el usuario no está libre, elegir una variante igual en todas.
 - [ ] Confirmar la voz: comparar `es-AR-TomasNeural` vs `es-AR-ElenaNeural` con tono subido y elegir una. Guardar la decisión.
 - [ ] Primer lote de 3 ideas de trends con `anv trend` (necesita que Nicolas cuente qué trends vio o pase capturas; no hay API de tendencias).

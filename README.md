@@ -10,9 +10,18 @@ Requisitos: Node ≥ 18, `ffmpeg` y `ffprobe`, Python 3.
 
 ```bash
 npm install
-pip install edge-tts piper-tts     # voz gratis: edge-tts (argentina, con internet) y Piper (offline)
 npm test
 node bin/anv.js --help              # o: npm link && anv --help
+```
+
+## Voz (Python)
+
+Las voces gratis (edge-tts y Piper) se instalan en un entorno virtual dentro del repo. El CLI lo usa solo si existe la carpeta `.venv`. Piper todavía no funciona con Python 3.14 o más nuevo, por eso se usa 3.12:
+
+```bash
+brew install python@3.12            # en Mac; en Windows: winget install Python.Python.3.12
+python3.12 -m venv .venv
+.venv/bin/pip install edge-tts piper-tts
 ```
 
 ## El flujo en seis comandos

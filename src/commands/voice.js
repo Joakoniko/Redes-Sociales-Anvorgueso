@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
+import fssync from 'node:fs';
 import path from 'node:path';
-import { DIRS, PYTHON, PIPER_RESPALDO, VIDEO } from '../config.js';
+import { DIRS, PYTHON, PYTHON_ES_VENV, PIPER_RESPALDO, VIDEO } from '../config.js';
 import { asegurarDir, escribirJson, existe, listar } from '../lib/archivos.js';
 import { correr } from '../lib/proc.js';
 import { duracion } from '../lib/ffmpeg.js';
@@ -17,12 +18,35 @@ export function ayuda() {
   ].join('\n');
 }
 
+// Busca un ejecutable en el PATH (por ejemplo los que instala pipx).
+function enPath(nombre) {
+  const exts = process.platform === 'win32' ? ['.exe', '.cmd', ''] : [''];
+  for (const dir of (process.env.PATH || '').split(path.delimiter)) {
+    for (const ext of exts) {
+      const r = path.join(dir, nombre + ext);
+      try { fssync.accessSync(r, fssync.constants.X_OK); return r; } catch { /* sigue */ }
+    }
+  }
+  return null;
+}
+
+// Cómo invocar una herramienta de Python: el .venv del repo primero, después el
+// ejecutable del PATH (pipx), y por último "python3 -m".
+export function comandoPython(modulo, ejecutable) {
+  if (!PYTHON_ES_VENV) {
+    const bin = enPath(ejecutable);
+    if (bin) return { cmd: bin, pre: [] };
+  }
+  return { cmd: PYTHON, pre: ['-m', modulo] };
+}
+
 async function sintetizarEdge({ texto, voz, salida }) {
-  const args = ['-m', 'edge_tts', '--voice', voz.edge || 'es-AR-TomasNeural', '--text', texto, '--write-media', salida, '--write-subtitles', salida.replace(/\.mp3$/, '.vtt')];
+  const { cmd, pre } = comandoPython('edge_tts', 'edge-tts');
+  const args = [...pre, '--voice', voz.edge || 'es-AR-TomasNeural', '--text', texto, '--write-media', salida, '--write-subtitles', salida.replace(/\.mp3$/, '.vtt')];
   if (voz.edgeRate) args.push('--rate', voz.edgeRate);
   if (voz.edgePitch) args.push('--pitch', voz.edgePitch);
   if (process.env.HTTPS_PROXY) args.push('--proxy', process.env.HTTPS_PROXY);
-  await correr(PYTHON, args, { timeoutMs: 45000 });
+  await correr(cmd, args, { timeoutMs: 45000 });
   const st = await fs.stat(salida);
   if (!st.size) throw new Error('edge-tts no devolvió audio');
   return { motor: 'edge-tts', voz: voz.edge || 'es-AR-TomasNeural' };
@@ -65,9 +89,10 @@ async function sintetizarPiper({ texto, voz, salida }) {
   }
   if (!modelo) throw new Error('No hay ninguna voz de Piper en assets/voces/piper/.');
   const config = (await existe(`${modelo}.json`)) ? `${modelo}.json` : modelo.replace(/\.onnx$/, '.json');
-  const args = ['-m', 'piper', '-m', modelo, '-c', config, '-f', salida];
+  const { cmd, pre } = comandoPython('piper', 'piper');
+  const args = [...pre, '-m', modelo, '-c', config, '-f', salida];
   if (voz.piperLengthScale) args.push('--length-scale', String(voz.piperLengthScale));
-  await correr(PYTHON, args, { input: texto + '\n', timeoutMs: 120000 });
+  await correr(cmd, args, { input: texto + '\n', timeoutMs: 120000 });
   return { motor: 'piper', voz: path.basename(modelo, '.onnx') };
 }
 
@@ -104,7 +129,9 @@ export async function run(posicionales, flags) {
         break;
       } catch (e) {
         ultimoError = e;
-        console.log(`  Escena ${n}: ${motor} falló (${e.message.split('\n')[0].slice(0, 120)}). ${motor === 'edge' ? 'Pruebo Piper offline...' : ''}`);
+        const detalle = (e.err || '').trim().split('\n').filter(Boolean).pop() || e.message.split('\n')[0];
+        console.log(`  Escena ${n}: ${motor} falló (${detalle.slice(0, 160)}). ${motor === 'edge' ? 'Pruebo Piper offline...' : ''}`);
+        if (/No module named/.test(detalle)) console.log(`  Falta instalar el módulo en ${PYTHON}. Ver la sección "Voz" del README.`);
       }
     }
     if (!info) throw new Error(`No pude generar la voz de la escena ${n}. Último error: ${ultimoError?.message}`);

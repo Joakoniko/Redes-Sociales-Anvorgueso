@@ -42,4 +42,4 @@ No saltees el paso 1 "porque ya lo leíste en otra sesión": las decisiones camb
 
 ## Requisitos de la máquina
 
-Node ≥ 18, `ffmpeg` y `ffprobe` en el PATH, Python 3 con `pip install edge-tts piper-tts`. `npm install` instala `sharp`. Pruebas: `npm test`.
+Node ≥ 18, `ffmpeg` y `ffprobe` en el PATH, Python 3.12 con un entorno `.venv` en el repo (ver "Voz" en el README). `npm install` instala `sharp`. Pruebas: `npm test`.
