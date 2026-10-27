@@ -45,3 +45,35 @@ export async function renderizarTexto(texto, opciones = {}) {
   const buffer = await sharp(Buffer.from(svg)).png().toBuffer();
   return { buffer, ancho, alto, lineas };
 }
+
+// Reparte la duración de la voz entre las palabras, proporcional a su largo.
+// Sirve para cualquier motor de TTS (Piper no entrega tiempos por palabra).
+export function tiemposPalabras(frase, durVoz) {
+  const palabras = String(frase).trim().split(/\s+/).filter(Boolean);
+  const pesos = palabras.map((w) => w.replace(/[^\p{L}\p{N}]/gu, '').length + 2);
+  const total = pesos.reduce((a, b) => a + b, 0) || 1;
+  let t = 0;
+  return palabras.map((w, i) => {
+    const d = (pesos[i] / total) * durVoz;
+    const r = { palabra: w, desde: t, hasta: t + d };
+    t += d;
+    return r;
+  });
+}
+
+// Dibuja un grupo de palabras con una resaltada (índice dentro del grupo, o -1).
+export async function renderizarSubtitulo(palabras, resaltada, opciones) {
+  const { tam, color, resaltado, borde, ancho } = opciones;
+  const alto = Math.round(tam * 1.7);
+  const grosor = Math.round(tam * 0.18);
+  const spans = (relleno) => palabras.map((w, i) => {
+    const c = relleno ?? (i === resaltada ? resaltado : color);
+    return `<tspan fill="${c}">${escaparXml(w)}</tspan>`;
+  }).join(' ');
+  const y = Math.round(tam * 1.15);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${ancho}" height="${alto}">` +
+    `<style>text{font-family:'${FUENTE.familia}',sans-serif;font-weight:700;font-size:${tam}px}</style>` +
+    `<text x="50%" y="${y}" text-anchor="middle" stroke="${borde}" stroke-width="${grosor}" stroke-linejoin="round">${spans(borde)}</text>` +
+    `<text x="50%" y="${y}" text-anchor="middle">${spans()}</text></svg>`;
+  return { buffer: await sharp(Buffer.from(svg)).png().toBuffer(), ancho, alto };
+}

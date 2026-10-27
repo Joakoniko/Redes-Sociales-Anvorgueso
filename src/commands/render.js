@@ -2,11 +2,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import sharp from 'sharp';
-import { DIRS, FONDOS, PERSONAJE_BASE, TEXTO, VIDEO, ZONA_SEGURA } from '../config.js';
+import { DIRS, FONDOS, PERSONAJE_BASE, SUBTITULOS, TEXTO, TRANSICION, VIDEO, ZONA_SEGURA } from '../config.js';
 import { asegurarDir, escribirJson, existe, leerJson } from '../lib/archivos.js';
 import { cargarPersonaje, rutaModelo } from '../lib/personajes.js';
 import { rasterizarSvg } from '../lib/svg.js';
-import { renderizarTexto } from '../lib/texto.js';
+import { renderizarSubtitulo, renderizarTexto, tiemposPalabras } from '../lib/texto.js';
 import { cargarGuion, validarGuion } from './script.js';
 
 export function ayuda() {
@@ -169,10 +169,32 @@ export async function run(posicionales, flags) {
     const pieY = posicion === 'abajo' ? H - ZONA_SEGURA.abajo - 40 : Math.round(H * 0.72);
     const textoTop = (e.textoPos === 'abajo') ? (H - ZONA_SEGURA.abajo - (texto?.alto || 0) - 40) : ZONA_SEGURA.arriba + 60;
     const variantes = new Map();
+    // Subtítulos: grupos de palabras con tiempos estimados sobre la duración real del audio.
+    const usarSubs = SUBTITULOS.activos && guion.subtitulos !== false && e.subtitulos !== false && e.voz && p.vozDur;
+    const tiempos = usarSubs ? tiemposPalabras(e.voz, p.vozDur) : [];
+    const subsCache = new Map();
+    const subtituloEn = async (t) => {
+      if (!tiempos.length || t >= p.vozDur + 0.15) return null;
+      let i = tiempos.findIndex((w) => t < w.hasta);
+      if (i < 0) i = tiempos.length - 1;
+      const g = Math.floor(i / SUBTITULOS.palabrasPorGrupo);
+      const clave = `${g}|${i}`;
+      if (!subsCache.has(clave)) {
+        const grupo = tiempos.slice(g * SUBTITULOS.palabrasPorGrupo, (g + 1) * SUBTITULOS.palabrasPorGrupo).map((w) => w.palabra);
+        subsCache.set(clave, await renderizarSubtitulo(grupo, i - g * SUBTITULOS.palabrasPorGrupo, { ...SUBTITULOS, ancho: W - 2 * ZONA_SEGURA.lados }));
+      }
+      return subsCache.get(clave);
+    };
 
     const hacerFrame = async (f) => {
       const t = f / fps;
       const a = animar(e.animacion || 'habla', t, { dur: p.dur, vozDur: p.vozDur });
+      // Pop de entrada en cada cambio de escena (salvo "entrada", que ya tiene su movimiento).
+      if ((e.animacion || 'habla') !== 'entrada' && t < TRANSICION.pop) {
+        const k = t / TRANSICION.pop;
+        const pop = 0.82 + 0.18 * (1 - Math.pow(1 - k, 3)) + 0.05 * Math.sin(Math.PI * k);
+        a.sx *= pop; a.sy *= pop;
+      }
       const sxr = Math.round(a.sx * 100) / 100; const syr = Math.round(a.sy * 100) / 100; const rotr = Math.round(a.rot);
       const clave = `${sxr}|${syr}|${rotr}`;
       let v = variantes.get(clave);
@@ -188,6 +210,8 @@ export async function run(posicionales, flags) {
       const c = await capa(v.buf, centroX + a.dx - v.w / 2, pieY + a.dy - v.h);
       if (c) capas.push(c);
       if (texto) capas.push({ input: texto.buffer, left: Math.round((W - texto.ancho) / 2), top: Math.round(textoTop) });
+      const sub = await subtituloEn(t);
+      if (sub) capas.push({ input: sub.buffer, left: Math.round((W - sub.ancho) / 2), top: SUBTITULOS.y });
       const img = sharp(fondo).composite(capas);
       if (guardarFrames) await img.clone().png().toFile(path.join(dirFrames, `f${String(indice + f).padStart(5, '0')}.png`));
       return img.ensureAlpha().raw().toBuffer();

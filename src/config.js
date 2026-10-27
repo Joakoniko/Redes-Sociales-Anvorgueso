@@ -64,6 +64,20 @@ export const TEXTO = {
   bordeSobreClaro: '#FFFFFF',
 };
 
+// Subtítulos de la voz: aparecen de a grupos de palabras y la palabra que suena va resaltada.
+export const SUBTITULOS = {
+  activos: true,
+  tam: 64,
+  palabrasPorGrupo: 3,
+  color: '#FFFFFF',
+  resaltado: '#FFE63C',
+  borde: '#1A1A1E',
+  y: 1440, // borde superior del bloque, por encima de la zona que tapa la interfaz
+};
+
+// Entrada de cada escena: el personaje "aparece" con un pequeño rebote de escala.
+export const TRANSICION = { pop: 0.18 };
+
 export const FUENTE = {
   archivo: path.join(ROOT, 'assets', 'fonts', 'DejaVuSans-Bold.ttf'),
   familia: 'DejaVu Sans',

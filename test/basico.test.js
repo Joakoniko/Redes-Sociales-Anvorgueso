@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parsearArgs } from '../src/cli.js';
 import { slugificar } from '../src/lib/archivos.js';
-import { partirLineas, tieneEmoji } from '../src/lib/texto.js';
+import { partirLineas, tieneEmoji, tiemposPalabras } from '../src/lib/texto.js';
 import { quitarFondo } from '../src/lib/svg.js';
 import { animar } from '../src/commands/render.js';
 import { estimarDuracion, plantillaGuion, validarGuion } from '../src/commands/script.js';
@@ -70,4 +70,13 @@ test('la marca de agua siempre está en el filtro', () => {
   const f = filtroMarcaDeAgua();
   assert.ok(f.startsWith('drawtext='));
   assert.ok(f.includes('@anvorgueso.cat'));
+});
+
+test('tiemposPalabras reparte toda la duración en orden', () => {
+  const t = tiemposPalabras('Miau, che. Soy Anvorgueso.', 2);
+  assert.equal(t.length, 4);
+  assert.equal(t[0].desde, 0);
+  assert.ok(Math.abs(t[3].hasta - 2) < 1e-9);
+  assert.ok(t.every((w, i) => i === 0 || w.desde === t[i - 1].hasta));
+  assert.ok(t[3].hasta - t[3].desde > t[1].hasta - t[1].desde, 'las palabras largas duran más');
 });

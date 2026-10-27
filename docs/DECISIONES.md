@@ -51,3 +51,8 @@ Formato: `## AAAA-MM-DD — Título` seguido de **Decisión**, **Por qué**, **A
 **Decisión:** el primer reel (`2026-10-27-presentacion`) se generó con Piper (voz `es-carlfm-x-low`, español de España) porque el entorno donde se armó no tiene salida a los servidores de edge-tts. En la computadora de Nicolas, `anv voice` vuelve a generar la voz argentina.
 **Por qué:** demostrar el flujo de punta a punta sin bloquearse por la red.
 **Estado:** provisoria del agente.
+
+## 2026-10-27 — Subtítulos de la voz
+**Decisión:** todo video con voz lleva subtítulos abajo (y = 1440 px), de a 3 palabras, con la palabra que suena en amarillo `#FFE63C`. Los tiempos se estiman repartiendo la duración real del audio según el largo de cada palabra. Se apagan con `"subtitulos": false`.
+**Por qué:** mucha gente mira sin sonido y los subtítulos dinámicos retienen más. La estimación funciona con Piper, que no da tiempos por palabra.
+**Estado:** provisoria del agente.

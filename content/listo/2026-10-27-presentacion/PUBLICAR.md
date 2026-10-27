@@ -1,6 +1,6 @@
 # Publicar: Anvorgueso se presenta
 
-Archivo: `content/listo/2026-10-27-presentacion/2026-10-27-presentacion.mp4` (1080x1920, 11.8 s, 1.3 MB)
+Archivo: `content/listo/2026-10-27-presentacion/2026-10-27-presentacion.mp4` (1080x1920, 11.8 s, 1.4 MB)
 Portada: `content/listo/2026-10-27-presentacion/portada.png`
 
 ## Antes de subir

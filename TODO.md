@@ -13,9 +13,9 @@ Prioridades del proyecto. Se actualiza en cada sesión: lo hecho se mueve a "Hec
 
 ## P1: calidad del video
 
-- [ ] Subtítulos palabra por palabra a partir del `.vtt` de edge-tts (hoy el texto en pantalla es fijo por escena).
+- [ ] Subtítulos: usar los tiempos reales por palabra de edge-tts cuando estén (hoy se estiman por largo de palabra, sirve para cualquier motor).
 - [ ] Más animaciones: parpadeo (alternar dos SVG), girar la cabeza, "sorpresa" (escala rápida), caída. Separar partes del SVG (brazos, cola) para el modelo "mascota parada" y "manguera" y así tener bailes de verdad.
-- [ ] Transiciones entre escenas (corte seco hoy): deslizar, zoom, "caja que se abre" con el modelo `03-caja`.
+- [ ] Más transiciones entre escenas (hoy: pop de escala al entrar): deslizar, zoom, "caja que se abre" con el modelo `03-caja`.
 - [ ] Biblioteca de música libre (CC0 / CC-BY) con licencias guardadas en `assets/musica/LICENCIAS.md`, y mezcla a volumen bajo en `anv edit`.
 - [ ] Efectos de sonido propios (pop, bufido, ronroneo) grabados o generados con ffmpeg/sox, libres.
 - [ ] `anv edit --carrusel`: exportar 1080x1350 para carruseles de Instagram desde un guion de viñetas.
@@ -51,5 +51,7 @@ Prioridades del proyecto. Se actualiza en cada sesión: lo hecho se mueve a "Hec
 | Ninguna por ahora | — | — | El flujo completo corre con herramientas gratis. Se anota acá si aparece algo. |
 
 ## Hecho
+
+- 2026-10-27: subtítulos de la voz palabra por palabra (grupos de 3, palabra que suena en amarillo) y pop de entrada en cada escena. Se desactivan con `"subtitulos": false` en el guion o la escena.
 
 - 2026-10-27: base del proyecto: `docs/`, `agents/`, CLI `anv` (trend, script, voice, render, edit, publish, estado), `personajes/`, SVG copiados del repo de arte, reel de prueba `2026-10-27-presentacion` generado de punta a punta con voz TTS y marca de agua.
