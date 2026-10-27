@@ -1,0 +1,49 @@
+{
+  "slug": "2026-10-27-presentacion",
+  "generado": "2026-10-27T02:56:03.291Z",
+  "fps": 30,
+  "duracion": 11.808,
+  "conVoz": true,
+  "escenas": [
+    {
+      "n": 1,
+      "inicio": 0,
+      "dur": 1.968,
+      "vozDur": 1.568,
+      "vozArchivo": "voz/escena-01.wav",
+      "modelo": "09-mascota-parada",
+      "personaje": "anvorgueso",
+      "animacion": "entrada"
+    },
+    {
+      "n": 2,
+      "inicio": 1.968,
+      "dur": 3.408,
+      "vozDur": 3.008,
+      "vozArchivo": "voz/escena-02.wav",
+      "modelo": "09-mascota-parada",
+      "personaje": "anvorgueso",
+      "animacion": "habla"
+    },
+    {
+      "n": 3,
+      "inicio": 5.376,
+      "dur": 3.088,
+      "vozDur": 2.688,
+      "vozArchivo": "voz/escena-03.wav",
+      "modelo": "01-mochi",
+      "personaje": "anvorgueso",
+      "animacion": "habla"
+    },
+    {
+      "n": 4,
+      "inicio": 8.464,
+      "dur": 3.344,
+      "vozDur": 2.944,
+      "vozArchivo": "voz/escena-04.wav",
+      "modelo": "09-mascota-parada",
+      "personaje": "anvorgueso",
+      "animacion": "baile"
+    }
+  ]
+}

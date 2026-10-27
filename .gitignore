@@ -1,0 +1,15 @@
+node_modules/
+.cache/
+*.log
+
+# Archivos pesados que se regeneran desde el guion (ver docs/DECISIONES.md)
+content/render/*/frames/
+content/render/*/voz/*.mp3
+content/render/*/voz/*.wav
+content/render/*/voz/*.vtt
+content/render/*/video-mudo.mp4
+content/listo/*/*.mp4
+content/publicado/*/*.mp4
+
+# Voces de Piper descargadas (se bajan solas con anv voice)
+assets/voces/

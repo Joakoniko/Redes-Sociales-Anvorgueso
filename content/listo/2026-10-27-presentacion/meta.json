@@ -1,0 +1,28 @@
+{
+  "slug": "2026-10-27-presentacion",
+  "titulo": "Anvorgueso se presenta",
+  "archivo": "2026-10-27-presentacion.mp4",
+  "generado": "2026-10-27T02:56:08.726Z",
+  "duracion": 11.808,
+  "bytes": 1361038,
+  "ancho": 1080,
+  "alto": 1920,
+  "fps": 30,
+  "codecVideo": "h264",
+  "codecAudio": "aac",
+  "audioHz": 48000,
+  "marcaDeAgua": "@anvorgueso.cat",
+  "motorVoz": "piper",
+  "vozUsada": "es-carlfm-x-low",
+  "personajes": [
+    "anvorgueso"
+  ],
+  "plataformas": [
+    "tiktok",
+    "instagram",
+    "shorts",
+    "facebook"
+  ],
+  "sha256": "c962df2f8d32536742868eb475108f8ab6bb5a89a5cd04e3cbae142232894a65",
+  "problemas": []
+}

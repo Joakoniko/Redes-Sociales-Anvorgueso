@@ -1,0 +1,35 @@
+{
+  "nombre": "Anvorgueso",
+  "rol": "protagonista",
+  "estado": "activo",
+  "descripcion": "Gato mitad verde (izquierda) y mitad rosa (derecha), cola rosa y ojo rojo dentado del lado verde. Irónico, tierno, vago con orgullo, siempre pide atún.",
+  "carpeta": "assets/personajes/anvorgueso",
+  "modeloPrincipal": "09-mascota-parada",
+  "modeloReaccion": "01-mochi",
+  "fondoPorDefecto": "rosa",
+  "paleta": {
+    "verde": "#4CD137",
+    "verdeSombra": "#2EA028",
+    "rosa": "#FF4FA3",
+    "rosaSombra": "#C82878",
+    "oreja": "#FFBEDC",
+    "contorno": "#1A1A1E",
+    "ojoRojo": "#FF1744",
+    "ojoRojoOscuro": "#960023",
+    "boca": "#781428",
+    "chispas": "#FFE63C",
+    "corazones": "#FF3C5A"
+  },
+  "voz": {
+    "edge": "es-AR-TomasNeural",
+    "edgeRate": "+8%",
+    "edgePitch": "+12Hz",
+    "piper": "auto",
+    "piperLengthScale": 0.92
+  },
+  "tono": [
+    "Voseo rioplatense, frases cortas, siempre una analogía gatuna.",
+    "Primero la situación, después el remate.",
+    "Burlón pero nunca hiriente. Apto para chicos."
+  ]
+}
