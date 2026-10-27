@@ -33,7 +33,7 @@ Formato: `## AAAA-MM-DD — Título` seguido de **Decisión**, **Por qué**, **A
 **Estado:** provisoria del agente. **Pendiente: Nicolas elige modelo y modo definitivos.**
 
 ## 2026-10-27 — Marca de agua
-**Decisión:** texto "@anvorgueso.cat" en DejaVu Sans Bold, blanco con sombra, al 85 % de opacidad, arriba a la izquierda (x = 48 px, y = 150 px), fuera de la interfaz de TikTok e Instagram. Configurable en `src/config.js`.
+**Decisión:** texto "@anvorgueso.cat" (dibujado con sharp en `anv render`, ver la entrada siguiente) en DejaVu Sans Bold, blanco con sombra, al 85 % de opacidad, arriba a la izquierda (x = 48 px, y = 150 px), fuera de la interfaz de TikTok e Instagram. Configurable en `src/config.js`.
 **Por qué:** la zona superior izquierda queda libre en las tres apps; abajo y a la derecha tapan la interfaz.
 **Estado:** provisoria del agente.
 
@@ -55,4 +55,13 @@ Formato: `## AAAA-MM-DD — Título` seguido de **Decisión**, **Por qué**, **A
 ## 2026-10-27 — Subtítulos de la voz
 **Decisión:** todo video con voz lleva subtítulos abajo (y = 1440 px), de a 3 palabras, con la palabra que suena en amarillo `#FFE63C`. Los tiempos se estiman repartiendo la duración real del audio según el largo de cada palabra. Se apagan con `"subtitulos": false`.
 **Por qué:** mucha gente mira sin sonido y los subtítulos dinámicos retienen más. La estimación funciona con Piper, que no da tiempos por palabra.
+**Estado:** provisoria del agente.
+
+## 2026-10-27 — Marca de agua con sharp, no con drawtext
+**Decisión:** la marca de agua se dibuja en cada fotograma durante `anv render` con sharp, y `anv edit` verifica que esté antes de exportar. Ya no se usa el filtro `drawtext` de ffmpeg.
+**Por qué:** el ffmpeg de Homebrew en la Mac de Nicolas no trae `drawtext` (falla con "No such filter"). Con sharp funciona con cualquier ffmpeg.
+**Estado:** provisoria del agente.
+
+## 2026-10-27 — Voz un poco más rápida
+**Decisión:** `es-AR-TomasNeural` a +15 % de velocidad (antes +8 %) y frases del reel de prueba acortadas, porque con la voz argentina el reel duraba 18,5 s y una escena pasaba los 5 s.
 **Estado:** provisoria del agente.

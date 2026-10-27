@@ -20,7 +20,7 @@
       "animacion": "habla",
       "fondo": "verde",
       "texto": "No es un filtro",
-      "voz": "Mitad verde, mitad rosa. No es filtro, nací así.",
+      "voz": "Mitad verde, mitad rosa. Nací así.",
       "dur": 4
     },
     {
@@ -29,7 +29,7 @@
       "animacion": "habla",
       "fondo": "noche",
       "texto": "No es un error, es diseño",
-      "voz": "Y el ojo rojo no es un error. Es diseño.",
+      "voz": "El ojo rojo no es error. Es diseño.",
       "dur": 4
     },
     {
@@ -38,7 +38,7 @@
       "animacion": "baile",
       "fondo": "rosa",
       "texto": "Seguime (o no)",
-      "voz": "Seguime. O no. Igual me voy a dormir.",
+      "voz": "Seguime. O no. Me voy a dormir.",
       "dur": 4
     }
   ],

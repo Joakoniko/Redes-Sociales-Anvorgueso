@@ -16,7 +16,7 @@ Terminás el video: unís imagen y voz, ponés la marca de agua, exportás en el
 
 ## Qué hace ffmpeg
 1. Audio: concatena los audios de voz en la posición de cada escena (silencio donde no hay voz), normaliza volumen (`loudnorm`, -16 LUFS aprox.), mezcla música libre si el guion la trae a -18 dB.
-2. Marca de agua: `drawtext` con `@anvorgueso.cat`, DejaVu Sans Bold, blanco con sombra, opacidad 0,85, arriba a la izquierda (configurable en `src/config.js`). Siempre visible, en todo el video.
+2. Marca de agua: la dibuja `anv render` con sharp en cada fotograma (`@anvorgueso.cat`, DejaVu Sans Bold, blanco con sombra, opacidad 0,85, arriba a la izquierda, configurable en `src/config.js`). Así funciona con cualquier ffmpeg, aunque no tenga `drawtext`. `anv edit` se niega a exportar si el render no la trae.
 3. Exporta con `-movflags +faststart` para que cargue rápido.
 
 ## Formatos por plataforma

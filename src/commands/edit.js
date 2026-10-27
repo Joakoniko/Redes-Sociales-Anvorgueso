@@ -1,25 +1,19 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { DIRS, FUENTE, HORARIOS_SUGERIDOS, MARCA, PLATAFORMAS, VIDEO } from '../config.js';
+import { DIRS, HORARIOS_SUGERIDOS, MARCA, PLATAFORMAS, VIDEO } from '../config.js';
 import { asegurarDir, escribirJson, existe, formatoMB, leerJson } from '../lib/archivos.js';
-import { escaparRutaFiltro, escaparTextoFiltro, ffmpeg, resumenVideo } from '../lib/ffmpeg.js';
+import { ffmpeg, resumenVideo } from '../lib/ffmpeg.js';
 import { cargarGuion } from './script.js';
 
 export function ayuda() {
   return [
     'anv edit <slug>',
     '',
-    'Une content/render/<slug>/video-mudo.mp4 con la voz, pone la marca de agua "@anvorgueso.cat",',
+    'Une content/render/<slug>/video-mudo.mp4 (que ya trae la marca de agua "@anvorgueso.cat") con la voz,',
     'normaliza el audio y exporta H.264 + AAC 1080x1920 a content/listo/<slug>/<slug>.mp4,',
     'junto con caption.txt, meta.json, portada.png y PUBLICAR.md.',
   ].join('\n');
-}
-
-export function filtroMarcaDeAgua() {
-  const fuente = escaparRutaFiltro(FUENTE.archivo);
-  const texto = escaparTextoFiltro(MARCA.texto);
-  return `drawtext=fontfile='${fuente}':text='${texto}':x=${MARCA.x}:y=${MARCA.y}:fontsize=${MARCA.tam}:fontcolor=white@${MARCA.alpha}:shadowcolor=black@${MARCA.sombra}:shadowx=3:shadowy=3`;
 }
 
 function textoPublicar({ slug, guion, meta }) {
@@ -53,6 +47,10 @@ export async function run(posicionales) {
   const videoMudo = path.join(dirRender, 'video-mudo.mp4');
   if (!(await existe(videoMudo))) throw new Error(`No existe ${path.relative(process.cwd(), videoMudo)}. Primero: anv render ${slug}`);
   const render = await leerJson(path.join(dirRender, 'render.json'));
+  // La marca de agua la dibuja el render en cada fotograma. Sin ella, no se exporta.
+  if (render.marcaDeAgua !== MARCA.texto) {
+    throw new Error(`El video mudo no tiene la marca de agua "${MARCA.texto}". Volvé a correr: anv render ${slug}`);
+  }
   const dirListo = path.join(DIRS.listo, slug);
   await asegurarDir(dirListo);
   const salida = path.join(dirListo, `${slug}.mp4`);
@@ -93,7 +91,7 @@ export async function run(posicionales) {
     cadenaAudio = `${etiquetas.join('')}amix=inputs=${etiquetas.length}:duration=longest:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=11,apad=whole_dur=${D},atrim=0:${D}[aout]`;
   }
   filtros.push(cadenaAudio);
-  filtros.push(`[0:v]${filtroMarcaDeAgua()},format=yuv420p[vout]`);
+  filtros.push('[0:v]format=yuv420p[vout]');
 
   await ffmpeg([
     ...args,

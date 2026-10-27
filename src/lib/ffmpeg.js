@@ -31,7 +31,7 @@ export async function resumenVideo(archivo) {
   };
 }
 
-// Escapa una ruta para usarla dentro de un filtro de ffmpeg (drawtext=fontfile=...).
+// Escapa una ruta para usarla dentro de un filtro de ffmpeg.
 export function escaparRutaFiltro(ruta) {
   return ruta.replace(/\\/g, '/').replace(/:/g, '\\:').replace(/'/g, "\\'");
 }

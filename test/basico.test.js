@@ -2,11 +2,10 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { parsearArgs } from '../src/cli.js';
 import { slugificar } from '../src/lib/archivos.js';
-import { partirLineas, tieneEmoji, tiemposPalabras } from '../src/lib/texto.js';
+import { partirLineas, renderizarMarca, tieneEmoji, tiemposPalabras } from '../src/lib/texto.js';
 import { quitarFondo } from '../src/lib/svg.js';
 import { animar } from '../src/commands/render.js';
 import { estimarDuracion, plantillaGuion, validarGuion } from '../src/commands/script.js';
-import { filtroMarcaDeAgua } from '../src/commands/edit.js';
 
 test('parsearArgs separa posicionales y flags', () => {
   const r = parsearArgs(['script', 'mi-slug', '--check', '--personaje', 'anvorgueso', '--tema=hola']);
@@ -66,10 +65,10 @@ test('la validación detecta emojis y personajes inexistentes', async () => {
   assert.ok(problemas.some((p) => /no existe/.test(p)));
 });
 
-test('la marca de agua siempre está en el filtro', () => {
-  const f = filtroMarcaDeAgua();
-  assert.ok(f.startsWith('drawtext='));
-  assert.ok(f.includes('@anvorgueso.cat'));
+test('la marca de agua se dibuja sin depender de ffmpeg', async () => {
+  const m = await renderizarMarca();
+  assert.equal(m.texto, '@anvorgueso.cat');
+  assert.ok(m.buffer.length > 500 && m.ancho > 300);
 });
 
 test('tiemposPalabras reparte toda la duración en orden', () => {

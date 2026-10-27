@@ -2,9 +2,9 @@
   "slug": "2026-10-27-presentacion",
   "titulo": "Anvorgueso se presenta",
   "archivo": "2026-10-27-presentacion.mp4",
-  "generado": "2026-10-27T03:19:26.820Z",
-  "duracion": 11.808,
-  "bytes": 1485803,
+  "generado": "2026-10-27T03:47:56.742Z",
+  "duracion": 10.566667,
+  "bytes": 1316925,
   "ancho": 1080,
   "alto": 1920,
   "fps": 30,
@@ -23,6 +23,6 @@
     "shorts",
     "facebook"
   ],
-  "sha256": "fa9504e2a2a5afbe09e081ef0f20b34046f8ada50b6c7aba8c33fee9305a75ed",
+  "sha256": "ed883d2492db06eec7278285f56fd33aef86073943fa88b7b4f46690e72722bd",
   "problemas": []
 }

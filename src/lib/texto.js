@@ -1,5 +1,5 @@
 import sharp from 'sharp';
-import { FUENTE, TEXTO } from '../config.js';
+import { FUENTE, MARCA, TEXTO } from '../config.js';
 
 // Parte un texto en líneas de hasta maxCaracteres, respetando saltos de línea manuales.
 export function partirLineas(texto, maxCaracteres = TEXTO.maxCaracteres) {
@@ -76,4 +76,19 @@ export async function renderizarSubtitulo(palabras, resaltada, opciones) {
     `<text x="50%" y="${y}" text-anchor="middle" stroke="${borde}" stroke-width="${grosor}" stroke-linejoin="round">${spans(borde)}</text>` +
     `<text x="50%" y="${y}" text-anchor="middle">${spans()}</text></svg>`;
   return { buffer: await sharp(Buffer.from(svg)).png().toBuffer(), ancho, alto };
+}
+
+// Marca de agua "@anvorgueso.cat": texto blanco semitransparente con sombra.
+// Se dibuja con sharp sobre cada fotograma, así no depende de que ffmpeg tenga drawtext.
+export async function renderizarMarca() {
+  const { texto, tam, alpha, sombra } = MARCA;
+  const ancho = Math.ceil(texto.length * tam * 0.72) + 20;
+  const alto = Math.ceil(tam * 1.5);
+  const y = Math.round(tam * 1.0);
+  const t = escaparXml(texto);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${ancho}" height="${alto}">` +
+    `<style>text{font-family:'${FUENTE.familia}',sans-serif;font-weight:700;font-size:${tam}px}</style>` +
+    `<text x="3" y="${y + 3}" fill="#000" fill-opacity="${sombra}">${t}</text>` +
+    `<text x="0" y="${y}" fill="#FFF" fill-opacity="${alpha}">${t}</text></svg>`;
+  return { buffer: await sharp(Buffer.from(svg)).png().toBuffer(), ancho, alto, texto };
 }

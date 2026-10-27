@@ -2,11 +2,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { spawn } from 'node:child_process';
 import sharp from 'sharp';
-import { DIRS, FONDOS, PERSONAJE_BASE, SUBTITULOS, TEXTO, TRANSICION, VIDEO, ZONA_SEGURA } from '../config.js';
+import { DIRS, FONDOS, MARCA, PERSONAJE_BASE, SUBTITULOS, TEXTO, TRANSICION, VIDEO, ZONA_SEGURA } from '../config.js';
 import { asegurarDir, escribirJson, existe, leerJson } from '../lib/archivos.js';
 import { cargarPersonaje, rutaModelo } from '../lib/personajes.js';
 import { rasterizarSvg } from '../lib/svg.js';
-import { renderizarSubtitulo, renderizarTexto, tiemposPalabras } from '../lib/texto.js';
+import { renderizarMarca, renderizarSubtitulo, renderizarTexto, tiemposPalabras } from '../lib/texto.js';
 import { cargarGuion, validarGuion } from './script.js';
 
 export function ayuda() {
@@ -149,6 +149,8 @@ export async function run(posicionales, flags) {
     if (ff.stdin.write(buf)) resolve(); else ff.stdin.once('drain', resolve);
   });
 
+  const marca = await renderizarMarca();
+
   let indice = 0;
   for (const p of plan) {
     const e = p.escena;
@@ -212,6 +214,7 @@ export async function run(posicionales, flags) {
       if (texto) capas.push({ input: texto.buffer, left: Math.round((W - texto.ancho) / 2), top: Math.round(textoTop) });
       const sub = await subtituloEn(t);
       if (sub) capas.push({ input: sub.buffer, left: Math.round((W - sub.ancho) / 2), top: SUBTITULOS.y });
+      capas.push({ input: marca.buffer, left: MARCA.x, top: MARCA.y }); // siempre arriba de todo
       const img = sharp(fondo).composite(capas);
       if (guardarFrames) await img.clone().png().toFile(path.join(dirFrames, `f${String(indice + f).padStart(5, '0')}.png`));
       return img.ensureAlpha().raw().toBuffer();
@@ -233,6 +236,7 @@ export async function run(posicionales, flags) {
     fps,
     duracion: Math.round(total * 1000) / 1000,
     conVoz: Boolean(voz),
+    marcaDeAgua: MARCA.texto,
     escenas: plan.map((p) => ({ n: p.n, inicio: Math.round(p.inicio * 1000) / 1000, dur: Math.round(p.dur * 1000) / 1000, vozDur: p.vozDur, vozArchivo: p.vozArchivo, modelo: path.basename(p.modelo, '.svg'), personaje: p.personaje.id, animacion: p.escena.animacion || 'habla' })),
   });
   console.log(`✔ Video mudo: ${path.relative(process.cwd(), salida)} (${total.toFixed(1)} s). Siguiente: anv edit ${slug}`);

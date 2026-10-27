@@ -18,7 +18,7 @@ Dibujás el video: fondo, personaje animado y texto en pantalla, en 1080x1920. D
 
 ## Reglas
 - Verde a la izquierda, rosa a la derecha, ojo rojo del lado verde, cola rosa. **Nunca espejar** un SVG del personaje: para que mire al otro lado se usa otra pose.
-- Zona segura: texto y personaje dentro del rectángulo central (márgenes de 100 px a los lados, 220 px arriba, 300 px abajo). La marca de agua la pone el editor, no el productor.
+- Zona segura: texto y personaje dentro del rectángulo central (márgenes de 100 px a los lados, 220 px arriba, 300 px abajo). El render también dibuja la marca de agua `@anvorgueso.cat` en cada fotograma.
 - Fondos lisos o con un degradé suave; el personaje tiene que leerse en un celular chico.
 - No se versionan los fotogramas (`frames/`). Se regeneran desde el guion.
 - Todo lo que aparezca en pantalla es nuestro (dibujo propio o SVG del repo de arte). Sin fotos ni imágenes bajadas de internet.

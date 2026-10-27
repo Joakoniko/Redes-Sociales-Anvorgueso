@@ -22,7 +22,7 @@
   },
   "voz": {
     "edge": "es-AR-TomasNeural",
-    "edgeRate": "+8%",
+    "edgeRate": "+15%",
     "edgePitch": "+12Hz",
     "piper": "auto",
     "piperLengthScale": 0.92
