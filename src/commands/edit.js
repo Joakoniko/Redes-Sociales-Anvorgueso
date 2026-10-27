@@ -133,6 +133,7 @@ export async function run(posicionales) {
 
   console.log(`✔ Listo: ${path.relative(process.cwd(), salida)}`);
   console.log(`  ${meta.ancho}x${meta.alto} · ${meta.fps} fps · ${meta.duracion.toFixed(2)} s · ${formatoMB(meta.bytes)} · ${meta.codecVideo}/${meta.codecAudio} · marca de agua "${MARCA.texto}"`);
+  console.log(`  Voz: ${metaCompleta.motorVoz || 'sin voz'}${metaCompleta.vozUsada ? ` (${metaCompleta.vozUsada})` : ''}${metaCompleta.motorVoz === 'piper' ? ' ⚠ voz de respaldo, no la argentina' : ''}`);
   if (problemas.length) {
     console.log(`  ⚠ Problemas: ${problemas.join('; ')}`);
     process.exitCode = 1;

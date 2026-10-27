@@ -65,3 +65,8 @@ Formato: `## AAAA-MM-DD — Título` seguido de **Decisión**, **Por qué**, **A
 ## 2026-10-27 — Voz un poco más rápida
 **Decisión:** `es-AR-TomasNeural` a +15 % de velocidad (antes +8 %) y frases del reel de prueba acortadas, porque con la voz argentina el reel duraba 18,5 s y una escena pasaba los 5 s.
 **Estado:** provisoria del agente.
+
+## 2026-10-27 — No versionar lo generado
+**Decisión:** no se versiona nada de `content/render/` ni lo generado en `content/listo/` (salvo `caption.txt` y `APROBADO`). Se deja de guardar el reel de prueba en el repo.
+**Por qué:** esos archivos se regeneran en la compu de Nicolas y hacían fallar `git pull`; además el mp4 viejo (voz de respaldo) quedaba como si fuera el nuevo.
+**Estado:** provisoria del agente. Reemplaza "Qué se versiona de content/".

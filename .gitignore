@@ -4,12 +4,12 @@ node_modules/
 *.log
 
 # Archivos pesados que se regeneran desde el guion (ver docs/DECISIONES.md)
-content/render/*/frames/
-content/render/*/voz/*.mp3
-content/render/*/voz/*.wav
-content/render/*/voz/*.vtt
-content/render/*/video-mudo.mp4
-content/listo/*/*.mp4
+# Todo lo generado se regenera con anv voice/render/edit y no se versiona, para que
+# "git pull" nunca choque con lo que se generó en la compu de cada uno.
+content/render/*/
+content/listo/*/*
+!content/listo/*/caption.txt
+!content/listo/*/APROBADO
 content/publicado/*/*.mp4
 
 # Voces de Piper descargadas (se bajan solas con anv voice)

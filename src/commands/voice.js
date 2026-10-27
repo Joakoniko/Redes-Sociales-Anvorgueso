@@ -117,7 +117,8 @@ export async function run(posicionales, flags) {
       if (ant) { resultado.escenas.push(ant); continue; }
     }
     const personaje = await cargarPersonaje(escena.personaje || guion.personajes?.[0] || 'anvorgueso');
-    const voz = personaje.voz || {};
+    // La voz sale del personaje y se puede pisar desde el guion ("vozConfig") o la escena.
+    const voz = { ...(personaje.voz || {}), ...(guion.vozConfig?.[personaje.id] || {}), ...(escena.vozConfig || {}) };
     const nombreBase = `escena-${String(n).padStart(2, '0')}`;
     let info = null;
     let ultimoError = null;

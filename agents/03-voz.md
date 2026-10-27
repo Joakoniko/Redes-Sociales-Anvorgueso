@@ -19,6 +19,9 @@ Comando: `anv voice <slug>`. Opciones: `--motor edge|piper` para forzar, `--esce
 2. **Piper** (respaldo offline): `pip install piper-tts`. El CLI descarga sola una voz en español desde las publicaciones de GitHub del proyecto Piper si no hay ninguna en `assets/voces/piper/`. Si Nicolas descarga `es_AR-daniela-high` (acento argentino, está en Hugging Face), el CLI la prefiere automáticamente.
 3. Si ninguno funciona, el comando falla con un mensaje claro. **No se usa ninguna API paga.**
 
+## Cambiar la voz para un video
+En el guion: `"vozConfig": { "anvorgueso": { "edge": "es-AR-ElenaNeural", "edgeRate": "+10%", "edgePitch": "+0Hz" } }`, o `"vozConfig"` dentro de una escena. Lo que no se pisa sale de `personajes/<id>.json`.
+
 ## Reglas
 - Una frase por archivo. Las pausas largas se hacen con la duración de la escena, no con silencio dentro del audio.
 - Velocidad: un poco más rápido que lo normal (+8 %) para que suene a redes; tono un poco más agudo para Anvorgueso. Cada personaje define lo suyo en su JSON.
