@@ -13,6 +13,7 @@ Prioridades del proyecto. Se actualiza en cada sesión: lo hecho se mueve a "Hec
 
 ## P1: calidad del video
 
+- [ ] Elementos extra en el render (`"extras"` por escena): dibujo de celular, globo de chat, gráfico simple. Lo pidió el anuncio `2026-10-30-asistente-whatsapp`, que por ahora lo resuelve con texto, fondo y animación.
 - [ ] Subtítulos: usar los tiempos reales por palabra de edge-tts cuando estén (hoy se estiman por largo de palabra, sirve para cualquier motor).
 - [ ] Más animaciones: parpadeo (alternar dos SVG), girar la cabeza, "sorpresa" (escala rápida), caída. Separar partes del SVG (brazos, cola) para el modelo "mascota parada" y "manguera" y así tener bailes de verdad.
 - [ ] Más transiciones entre escenas (hoy: pop de escala al entrar): deslizar, zoom, "caja que se abre" con el modelo `03-caja`.
@@ -52,6 +53,7 @@ Prioridades del proyecto. Se actualiza en cada sesión: lo hecho se mueve a "Hec
 
 ## Hecho
 
+- 2026-10-30: primer anuncio del servicio de Nicolas, `2026-10-30-asistente-whatsapp` (4 escenas, 17,7 s), generado de punta a punta. En el cloud salió con voz Piper de respaldo; en la Mac de Nicolas `anv voice` lo regenera con la argentina. Falta que Nicolas pase su nombre y WhatsApp para la escena 4.
 - 2026-10-27: subtítulos de la voz palabra por palabra (grupos de 3, palabra que suena en amarillo) y pop de entrada en cada escena. Se desactivan con `"subtitulos": false` en el guion o la escena.
 
 - 2026-10-27: base del proyecto: `docs/`, `agents/`, CLI `anv` (trend, script, voice, render, edit, publish, estado), `personajes/`, SVG copiados del repo de arte, reel de prueba `2026-10-27-presentacion` generado de punta a punta con voz TTS y marca de agua.

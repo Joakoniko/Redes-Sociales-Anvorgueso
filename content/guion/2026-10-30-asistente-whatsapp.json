@@ -1,0 +1,49 @@
+{
+  "slug": "2026-10-30-asistente-whatsapp",
+  "titulo": "Tu negocio contesta solo",
+  "idea": "content/idea/2026-10-30-asistente-whatsapp.md",
+  "plataformas": ["tiktok", "instagram", "shorts", "facebook"],
+  "personajes": ["anvorgueso"],
+  "escenas": [
+    {
+      "personaje": "anvorgueso",
+      "modelo": "09-mascota-parada",
+      "animacion": "entrada",
+      "fondo": "rosa",
+      "texto": "Tu negocio contesta solo, 24/7",
+      "voz": "¿Cuántos clientes perdés porque nadie contesta el WhatsApp a tiempo?",
+      "dur": 4
+    },
+    {
+      "personaje": "anvorgueso",
+      "modelo": "01-mochi",
+      "animacion": "temblor",
+      "fondo": "noche",
+      "texto": "47 mensajes\nsin leer",
+      "voz": "Cada mensaje sin responder es una venta que se va a la competencia.",
+      "dur": 5
+    },
+    {
+      "personaje": "anvorgueso",
+      "modelo": "09-mascota-parada",
+      "animacion": "habla",
+      "fondo": "verde",
+      "texto": "Responde, agenda y vende por vos",
+      "voz": "Un asistente automático contesta, toma pedidos y agenda turnos mientras vos laburás.",
+      "dur": 5
+    },
+    {
+      "personaje": "anvorgueso",
+      "modelo": "09-mascota-parada",
+      "animacion": "habla",
+      "fondo": "crema",
+      "texto": "Escribime por\nWhatsApp",
+      "voz": "Escribime y te muestro cómo funciona, gratis. Yo sigo de siesta.",
+      "dur": 5
+    }
+  ],
+  "caption": "Tu negocio puede contestar solo, 24/7, mientras vos vivís. ¿Cuántos mensajes tenés sin responder ahora?",
+  "hashtags": ["#anvorgueso", "#whatsapp", "#emprendedores", "#negocios", "#argentina"],
+  "musica": null,
+  "notas": "Anuncio del asistente automático de WhatsApp de Nicolas. Es venta, no chiste: el humor va de condimento. Ojo rojo del lado verde en todas las escenas, nunca espejar. Escena 2: fondo oscuro y temblor reemplazan al celular vibrando. Escena 3: el gato con el celular en la mano reemplaza al mockup 3D. Escena 4: cuando Nicolas pase su nombre y número, el texto pasa a ser 'Escribile a\\n<nombre>\\n<número>' y la voz 'Escribile a <nombre> y te muestra cómo funciona, gratis. Yo sigo de siesta.'"
+}

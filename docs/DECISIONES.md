@@ -70,3 +70,13 @@ Formato: `## AAAA-MM-DD — Título` seguido de **Decisión**, **Por qué**, **A
 **Decisión:** no se versiona nada de `content/render/` ni lo generado en `content/listo/` (salvo `caption.txt` y `APROBADO`). Se deja de guardar el reel de prueba en el repo.
 **Por qué:** esos archivos se regeneran en la compu de Nicolas y hacían fallar `git pull`; además el mp4 viejo (voz de respaldo) quedaba como si fuera el nuevo.
 **Estado:** provisoria del agente. Reemplaza "Qué se versiona de content/".
+
+## 2026-10-30 — Anuncios del servicio de Nicolas con nombre y WhatsApp
+**Decisión:** Anvorgueso también hace anuncios del servicio de Nicolas (asistente automático de WhatsApp para negocios). En esos videos el cierre lleva el nombre y el número de WhatsApp de Nicolas en pantalla. No es una excepción general a la regla de datos personales de `BRAND.md`: vale solo para los anuncios que él pida. En un anuncio el mensaje de venta manda y el humor del gato va de condimento (una analogía gatuna, remate corto).
+**Por qué:** lo pidió Nicolas el 2026-10-29 con el guion del primer anuncio (`2026-10-30-asistente-whatsapp`).
+**Estado:** confirmada por Nicolas.
+
+## 2026-10-30 — Cómo se representan celulares y notificaciones sin elementos extra
+**Decisión:** mientras el render no admita elementos extra (dibujo de celular, globos de chat, gráficos), un "celular vibrando con notificaciones" se hace con fondo `noche`, animación `temblor` y texto en pantalla, y "mostrar el celular" se hace con el modelo `09-mascota-parada`, que lo sostiene en la mano.
+**Por qué:** el primer anuncio lo necesitaba y no se quiso agrandar el CLI por un video.
+**Estado:** provisoria del agente.
